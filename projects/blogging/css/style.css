@@ -75,10 +75,12 @@ p {
     display: block;
     font-size: 16px;
     padding: 6px 12px;
-    line-height: 1.6;    
+    line-height: 1.6;
     color: #333;
     margin-bottom: 10px;
     margin-top: 10px;
+    width: 100%;
+    height: 300px;
 }
 .qut {
     padding: 20px 40px;
