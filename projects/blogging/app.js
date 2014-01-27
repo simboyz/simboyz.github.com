@@ -149,14 +149,14 @@ var APP = window.APP = {};
                 var newDom = '';
                 var newDom2 = '';
                 if (c_val.length > 0) {
-                    newDom = '<p>' + c_val + '</p>';
+                    newDom = c_val + '\r';
                     newDom2 = c_val + ' .............................................. \r';
                 }
                 result += newDom;
                 resultOrg += newDom2;
             });
 
-            result = '<div class="result">' + result + '</div>';
+            result = '<textarea class="result">' + result + '</textarea>';
 
             $('.result').remove();
 
