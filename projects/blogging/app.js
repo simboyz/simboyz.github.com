@@ -190,7 +190,7 @@ var APP = window.APP = {};
                         target: 'en'
                     };
 
-                    $('.container').append('<div class="result">' + ko_jp +'</div>');
+                    $('.container').append('<textarea class="result">' + ko_jp +'</textarea>');
 
                     $.ajax({
                         type: 'POST',
@@ -202,7 +202,7 @@ var APP = window.APP = {};
                         },
                         success: function(data2) {
                             var jp_en = data2.data.translations[0].translatedText;
-                            $('.container').append('<div class="result">' + jp_en +'</div>');
+                            $('.container').append('<textarea class="result">' + jp_en +'</textarea>');
                         }
                     });
                 }
