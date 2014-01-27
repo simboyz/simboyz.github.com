@@ -150,7 +150,7 @@ var APP = window.APP = {};
                 var newDom2 = '';
                 if (c_val.length > 0) {
                     newDom = '<p>' + c_val + '</p>';
-                    newDom2 = c_val + '★★\r';
+                    newDom2 = c_val + ' ★★ ';
                 }
                 result += newDom;
                 resultOrg += newDom2;
