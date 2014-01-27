@@ -109,18 +109,18 @@ var APP = window.APP = {};
             var atatchedId = '';
             var h_text = '한칸당 대략 원고지 1매에 해당함';
 
-            baseBox += '<div id="box_' + (currentId + 1) + '" class="write_box">';            
-            baseBox += '<textarea cols="80" rows="5" maxlength="220" tabindex="' + (currentId + 1) + '" placeholder="'+h_text+'"></textarea>';
+            baseBox += '<div id="box_' + (currentId + 1) + '" class="write_box">';
+            baseBox += '<textarea cols="80" rows="5" maxlength="220" tabindex="' + (currentId + 1) + '" placeholder="' + h_text + '"></textarea>';
             baseBox += '<p style="text-align:center;">- ' + (currentId + 1) + '-</p>';
             baseBox += '</div>';
 
             container.append(baseBox);
 
 
-            
+
         },
         add: function(target) {
-            
+
             var baseBox = '';
             var container = $('.container');
             var currentId = $('.write_box').size();
@@ -139,25 +139,74 @@ var APP = window.APP = {};
         analy: function(target) {
             console.log(target);
         },
-        view : function(){
+        view: function() {
             var write_box = $('.write_box').find('textarea');
             var result = '';
-            write_box.each(function(){
+            var resultOrg = '';
+            write_box.each(function() {
                 var $this = $(this);
                 var c_val = $this.val();
                 var newDom = '';
-                if(c_val.length > 0) {
+                var newDom2 = '';
+                if (c_val.length > 0) {
                     newDom = '<p>' + c_val + '</p>';
+                    newDom2 = c_val + '★★\r';
                 }
                 result += newDom;
+                resultOrg += newDom2;
             });
 
             result = '<div class="result">' + result + '</div>';
-            
+
             $('.result').remove();
 
             $('.container').append(result);
 
+            var sending1 = {
+                q: resultOrg,
+                source: 'ko',
+                target: 'ja'
+            };
+
+            var fullURL = 'https://www.googleapis.com/language/translate/v2?key=';
+            fullURL += 'AIzaSyDsvpKG3UD60iAYzEzEUSDbuW1jZTFU-gA&';
+            var fullURL1 = fullURL;
+
+            $.ajax({
+                type: 'POST',
+                url: fullURL1,
+                dataType: 'json',
+                data: sending1,
+                headers: {
+                    'X-HTTP-Method-Override': 'GET'
+                },
+                success: function(data) {
+
+                    var ko_jp = data.data.translations[0].translatedText;
+
+                    var sending2 = {
+                        q: ko_jp,
+                        source: 'ja',
+                        target: 'en'
+                    };
+
+                    $('.container').append('<div class="result">' + ko_jp +'</div>');
+
+                    $.ajax({
+                        type: 'POST',
+                        url: fullURL1,
+                        dataType: 'json',
+                        data: sending2,
+                        headers: {
+                            'X-HTTP-Method-Override': 'GET'
+                        },
+                        success: function(data2) {
+                            var jp_en = data2.data.translations[0].translatedText;
+                            $('.container').append('<div class="result">' + jp_en +'</div>');
+                        }
+                    });
+                }
+            });
         }
     };
 
@@ -178,7 +227,7 @@ var APP = window.APP = {};
         callback: function() {
             var newDom = '<p style="text-align:center;"><button id="add">추가';
             newDom += '</button> <button id="view">보기</button></p>';
-            
+
             $('.container').append(newDom);
             $('#add').on('click', function() {
                 APP.myArea.add($(this));
