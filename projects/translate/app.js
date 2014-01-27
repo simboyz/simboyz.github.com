@@ -107,10 +107,10 @@ var APP = window.APP = {};
             var container = $('.container');
             var currentId = $('.write_box').size();
             var atatchedId = '';
-            var h_text = '한칸당 대략 원고지 1매에 해당함';
+            var h_text = '한칸당 1200 자까지만';
 
             baseBox += '<div id="box_' + (currentId + 1) + '" class="write_box">';
-            baseBox += '<textarea cols="80" rows="5" maxlength="240" tabindex="' + (currentId + 1) + '" placeholder="' + h_text + '"></textarea>';
+            baseBox += '<textarea cols="80" rows="10" maxlength="1200" tabindex="' + (currentId + 1) + '" placeholder="' + h_text + '"></textarea>';
             baseBox += '<p style="text-align:center;">- ' + (currentId + 1) + '-</p>';
             baseBox += '</div>';
 
@@ -127,7 +127,7 @@ var APP = window.APP = {};
             var atatchedId = '';
 
             baseBox += '<div id="box_' + (currentId + 1) + '" class="write_box">';
-            baseBox += '<textarea cols="80" rows="5" maxlength="200" tabindex="' + (currentId + 1) + '"></textarea>';
+            baseBox += '<textarea cols="80" rows="10" maxlength="1200" tabindex="' + (currentId + 1) + '"></textarea>';
             baseBox += '<p style="text-align:center;">- ' + (currentId + 1) + '-</p>';
             baseBox += '</div>';
 
@@ -143,7 +143,7 @@ var APP = window.APP = {};
             var write_box = $('.write_box').find('textarea');
             var result = '';
             var resultOrg = '';
-            write_box.each(function() {
+            write_box.each(function(i) {
                 var $this = $(this);
                 var c_val = $this.val();
                 var newDom = '';
@@ -164,7 +164,7 @@ var APP = window.APP = {};
 
             var sending1 = {
                 q: resultOrg,
-                source: 'ko',
+                source: 'en',
                 target: 'ja'
             };
 
@@ -187,10 +187,10 @@ var APP = window.APP = {};
                     var sending2 = {
                         q: ko_jp,
                         source: 'ja',
-                        target: 'en'
+                        target: 'ko'
                     };
 
-                    $('.container').append('<div class="result">' + ko_jp +'</div>');
+                    // $('.container').append('<div class="result">' + ko_jp +'</div>');
 
                     $.ajax({
                         type: 'POST',
@@ -222,11 +222,11 @@ var APP = window.APP = {};
 (function($) {
 
     _.asyncLoop({
-        items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        items: [1,2,3,4,5],
         outFn: APP.myArea.append,
         callback: function() {
             var newDom = '<p style="text-align:center;"><button id="add">추가';
-            newDom += '</button> <button id="view">보기</button></p>';
+            newDom += '</button> <button id="view">번역하기</button></p>';
 
             $('.container').append(newDom);
             $('#add').on('click', function() {
