@@ -107,10 +107,10 @@ var APP = window.APP = {};
             var container = $('.container');
             var currentId = $('.write_box').size();
             var atatchedId = '';
-            var h_text = '한칸당 1200 자까지만';
+            var h_text = '한칸당 5000 자까지만';
 
             baseBox += '<div id="box_' + (currentId + 1) + '" class="write_box">';
-            baseBox += '<textarea cols="80" rows="10" maxlength="1200" tabindex="' + (currentId + 1) + '" placeholder="' + h_text + '"></textarea>';
+            baseBox += '<textarea cols="80" rows="30" maxlength="5000" tabindex="' + (currentId + 1) + '" placeholder="' + h_text + '"></textarea>';
             baseBox += '<p style="text-align:center;">- ' + (currentId + 1) + '-</p>';
             baseBox += '</div>';
 
@@ -127,7 +127,7 @@ var APP = window.APP = {};
             var atatchedId = '';
 
             baseBox += '<div id="box_' + (currentId + 1) + '" class="write_box">';
-            baseBox += '<textarea cols="80" rows="10" maxlength="1200" tabindex="' + (currentId + 1) + '"></textarea>';
+            baseBox += '<textarea cols="80" rows="30" maxlength="5000" tabindex="' + (currentId + 1) + '"></textarea>';
             baseBox += '<p style="text-align:center;">- ' + (currentId + 1) + '-</p>';
             baseBox += '</div>';
 
@@ -222,7 +222,7 @@ var APP = window.APP = {};
 (function($) {
 
     _.asyncLoop({
-        items: [1,2,3,4,5],
+        items: [1],
         outFn: APP.myArea.append,
         callback: function() {
             var newDom = '<p style="text-align:center;"><button id="add">추가';
