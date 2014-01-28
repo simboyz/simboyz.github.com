@@ -156,7 +156,7 @@ var APP = window.APP = {};
                 resultOrg += newDom2;
             });
 
-            result = '<div class="result">' + result + '</div>';
+            result = '<textarea class="result">' + result + '</textarea>';
 
             $('.result').remove();
 
@@ -202,7 +202,7 @@ var APP = window.APP = {};
                         },
                         success: function(data2) {
                             var jp_en = data2.data.translations[0].translatedText;
-                            $('.container').append('<div class="result">' + jp_en +'</div>');
+                            $('.container').append('<textarea class="result">' + jp_en +'</textarea>');
                         }
                     });
                 }
